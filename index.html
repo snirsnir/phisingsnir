@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Board</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .textarea {
+      width: 60%;
+      height: 100px;
+      margin-bottom: 10px;
+      direction: rtl;
+      /* Right-to-left text direction */
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .messageBoard {
+      margin-top: 20px;
+      border-top: 2px solid #000;
+      min-height: 100px;
+      padding: 10px;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">לקורבנות SMS מה יישלח בהודעת</div>
+    <textarea class="textarea" id="messageInput1" placeholder="הקלד כאן..."></textarea>
+    <button onclick="sendMessage(1)">שלח</button>
+    <button onclick="resetMessage(1)">אפס</button>
+    <div class="messageBoard" id="messageBoard1"></div>
+  </div>
+
+  <div class="container">
+    <div class="title">?מהן השדות שיהיו בטופס? שם מלא.. ומה עוד</div>
+    <textarea class="textarea" id="messageInput2" placeholder="הקלד כאן..."></textarea>
+    <button onclick="sendMessage(2)">שלח</button>
+    <button onclick="resetMessage(2)">אפס</button>
+    <div class="messageBoard" id="messageBoard2"></div>
+  </div>
+
+  <script>
+    function sendMessage(groupNumber) {
+      var messageInputId = 'messageInput' + groupNumber;
+      var messageBoardId = 'messageBoard' + groupNumber;
+      var message = document.getElementById(messageInputId).value;
+      if (message) {
+        var messageBoard = document.getElementById(messageBoardId);
+        messageBoard.innerHTML += message + '<br>';
+        document.getElementById(messageInputId).value = ''; // Clear the input box
+      }
+    }
+
+    function resetMessage(groupNumber) {
+      var messageBoardId = 'messageBoard' + groupNumber;
+      document.getElementById(messageBoardId).innerHTML = ''; // Clear the message board
+    }
+  </script>
+</body>
+
+</html>
